@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,9 @@
 		AB426C9F2577AD5800B6625A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB426C9E2577AD5800B6625A /* Assets.xcassets */; };
 		AB426CA22577AD5800B6625A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB426CA12577AD5800B6625A /* Preview Assets.xcassets */; };
 		AB426CA52577AD5800B6625A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB426CA32577AD5800B6625A /* LaunchScreen.storyboard */; };
+		AB426CAE2577AD9000B6625A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AB426CAD2577AD9000B6625A /* GoogleService-Info.plist */; };
+		AB426CB32577AE5A00B6625A /* KingfisherSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = AB426CB22577AE5A00B6625A /* KingfisherSwiftUI */; };
+		E86102D6FE75FEBE462A25B4 /* Pods_swiftUI_Simple_CMS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E538BA93B2ACEAAF871192C5 /* Pods_swiftUI_Simple_CMS.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,10 @@
 		AB426CA12577AD5800B6625A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		AB426CA42577AD5800B6625A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AB426CA62577AD5800B6625A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AB426CAD2577AD9000B6625A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B45C42F7889BB085491C0C1A /* Pods-swiftUI-Simple-CMS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swiftUI-Simple-CMS.release.xcconfig"; path = "Target Support Files/Pods-swiftUI-Simple-CMS/Pods-swiftUI-Simple-CMS.release.xcconfig"; sourceTree = "<group>"; };
+		BD56E6BE604995C4D430E148 /* Pods-swiftUI-Simple-CMS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swiftUI-Simple-CMS.debug.xcconfig"; path = "Target Support Files/Pods-swiftUI-Simple-CMS/Pods-swiftUI-Simple-CMS.debug.xcconfig"; sourceTree = "<group>"; };
+		E538BA93B2ACEAAF871192C5 /* Pods_swiftUI_Simple_CMS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_swiftUI_Simple_CMS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +38,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB426CB32577AE5A00B6625A /* KingfisherSwiftUI in Frameworks */,
+				E86102D6FE75FEBE462A25B4 /* Pods_swiftUI_Simple_CMS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8735A5B4ACDC225D742E2F01 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BD56E6BE604995C4D430E148 /* Pods-swiftUI-Simple-CMS.debug.xcconfig */,
+				B45C42F7889BB085491C0C1A /* Pods-swiftUI-Simple-CMS.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		AB426C8C2577AD5600B6625A = {
 			isa = PBXGroup;
 			children = (
 				AB426C972577AD5600B6625A /* swiftUI-Simple-CMS */,
 				AB426C962577AD5600B6625A /* Products */,
+				8735A5B4ACDC225D742E2F01 /* Pods */,
+				D243010863D0A63AFC6DBEF2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,11 +76,10 @@
 		AB426C972577AD5600B6625A /* swiftUI-Simple-CMS */ = {
 			isa = PBXGroup;
 			children = (
-				AB426C982577AD5600B6625A /* AppDelegate.swift */,
-				AB426C9A2577AD5600B6625A /* SceneDelegate.swift */,
+				AB426CCC2577B46600B6625A /* iOS */,
+				AB426CCB2577B43C00B6625A /* Share */,
 				AB426C9C2577AD5600B6625A /* ContentView.swift */,
-				AB426C9E2577AD5800B6625A /* Assets.xcassets */,
-				AB426CA32577AD5800B6625A /* LaunchScreen.storyboard */,
+				AB426CCD2577B46F00B6625A /* macOS */,
 				AB426CA62577AD5800B6625A /* Info.plist */,
 				AB426CA02577AD5800B6625A /* Preview Content */,
 			);
@@ -75,6 +94,64 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		AB426CCB2577B43C00B6625A /* Share */ = {
+			isa = PBXGroup;
+			children = (
+				AB426CD02577B4EA00B6625A /* Helpers */,
+				AB426CCF2577B4BF00B6625A /* FirebaseListeners */,
+				AB426CCE2577B4B100B6625A /* Model */,
+				AB426C982577AD5600B6625A /* AppDelegate.swift */,
+				AB426C9A2577AD5600B6625A /* SceneDelegate.swift */,
+				AB426C9E2577AD5800B6625A /* Assets.xcassets */,
+				AB426CA32577AD5800B6625A /* LaunchScreen.storyboard */,
+				AB426CAD2577AD9000B6625A /* GoogleService-Info.plist */,
+			);
+			path = Share;
+			sourceTree = "<group>";
+		};
+		AB426CCC2577B46600B6625A /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		AB426CCD2577B46F00B6625A /* macOS */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = macOS;
+			sourceTree = "<group>";
+		};
+		AB426CCE2577B4B100B6625A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AB426CCF2577B4BF00B6625A /* FirebaseListeners */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = FirebaseListeners;
+			sourceTree = "<group>";
+		};
+		AB426CD02577B4EA00B6625A /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		D243010863D0A63AFC6DBEF2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E538BA93B2ACEAAF871192C5 /* Pods_swiftUI_Simple_CMS.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -82,15 +159,20 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AB426CA92577AD5800B6625A /* Build configuration list for PBXNativeTarget "swiftUI-Simple-CMS" */;
 			buildPhases = (
+				262EF6D5EA3ABB71905761E3 /* [CP] Check Pods Manifest.lock */,
 				AB426C912577AD5600B6625A /* Sources */,
 				AB426C922577AD5600B6625A /* Frameworks */,
 				AB426C932577AD5600B6625A /* Resources */,
+				A3B73170A825F892A77FBA8E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = "swiftUI-Simple-CMS";
+			packageProductDependencies = (
+				AB426CB22577AE5A00B6625A /* KingfisherSwiftUI */,
+			);
 			productName = "swiftUI-Simple-CMS";
 			productReference = AB426C952577AD5600B6625A /* swiftUI-Simple-CMS.app */;
 			productType = "com.apple.product-type.application";
@@ -118,6 +200,9 @@
 				Base,
 			);
 			mainGroup = AB426C8C2577AD5600B6625A;
+			packageReferences = (
+				AB426CB12577AE5A00B6625A /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = AB426C962577AD5600B6625A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -133,12 +218,55 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB426CA52577AD5800B6625A /* LaunchScreen.storyboard in Resources */,
+				AB426CAE2577AD9000B6625A /* GoogleService-Info.plist in Resources */,
 				AB426CA22577AD5800B6625A /* Preview Assets.xcassets in Resources */,
 				AB426C9F2577AD5800B6625A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		262EF6D5EA3ABB71905761E3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-swiftUI-Simple-CMS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A3B73170A825F892A77FBA8E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-swiftUI-Simple-CMS/Pods-swiftUI-Simple-CMS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-swiftUI-Simple-CMS/Pods-swiftUI-Simple-CMS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-swiftUI-Simple-CMS/Pods-swiftUI-Simple-CMS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		AB426C912577AD5600B6625A /* Sources */ = {
@@ -283,6 +411,7 @@
 		};
 		AB426CAA2577AD5800B6625A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BD56E6BE604995C4D430E148 /* Pods-swiftUI-Simple-CMS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -304,6 +433,7 @@
 		};
 		AB426CAB2577AD5800B6625A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B45C42F7889BB085491C0C1A /* Pods-swiftUI-Simple-CMS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -345,6 +475,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		AB426CB12577AE5A00B6625A /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = exactVersion;
+				version = 5.15.8;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AB426CB22577AE5A00B6625A /* KingfisherSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AB426CB12577AE5A00B6625A /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = KingfisherSwiftUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = AB426C8D2577AD5600B6625A /* Project object */;
 }
