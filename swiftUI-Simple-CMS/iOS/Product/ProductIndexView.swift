@@ -20,6 +20,7 @@ struct ProductIndexView: View {
                 HStack(spacing: 20) {
                     Image(systemName: "list.dash")
                         .font(.system(size: 20))
+                    
                         Text("Category")
                             .font(.title2)
                             .bold()
@@ -30,6 +31,7 @@ struct ProductIndexView: View {
                     }, label: {
                         Image(systemName: "plus.circle")
                             .font(.system(size: 20))
+                            .scaleEffect(x: 1.1)
                     })
                         
                     }

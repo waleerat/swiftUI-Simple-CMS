@@ -18,7 +18,7 @@ struct ProductNewRecord: View {
                 HStack(spacing: 20) {
                     Image(systemName: "doc.text")
                         .font(.system(size: 20))
-                        Text("Category")
+                        Text("Product")
                             .font(.title2)
                             .bold()
                         Spacer()
@@ -28,6 +28,7 @@ struct ProductNewRecord: View {
                     }, label: {
                         Image(systemName: "list.dash")
                             .font(.system(size: 20))
+                            .scaleEffect(x: 1.1)
                     })
                         
                     }
@@ -37,7 +38,7 @@ struct ProductNewRecord: View {
                 
                 // Start Body
                 ScrollView(.vertical, showsIndicators: false) {
-                    
+                    ProductForm(popupInfo: PopupInfo())
                 }
                 //End Body
             }
@@ -50,6 +51,7 @@ struct ProductNewRecord: View {
     }
 }
 
+//NOT ACTIVE JUST FOR DEBUGING
 struct ProductNewRecord_Previews: PreviewProvider {
     static var previews: some View {
             ProductNewRecord(isNewRecord: .constant(false)) 

@@ -20,7 +20,7 @@ struct ProductUpdateRecord: View {
                 HStack(spacing: 20) {
                     Image(systemName: "square.and.pencil")
                         .font(.system(size: 20))
-                        Text("Category")
+                        Text("Product")
                             .font(.title2)
                             .bold()
                         Spacer()
@@ -30,6 +30,7 @@ struct ProductUpdateRecord: View {
                     }, label: {
                         Image(systemName: "list.dash")
                             .font(.system(size: 20))
+                            .scaleEffect(x: 1.1)
                     })
                         
                     }
@@ -51,6 +52,7 @@ struct ProductUpdateRecord: View {
     }
 }
 
+//NOT ACTIVE JUST FOR DEBUGING
 struct ProductUpdateRecord_Previews: PreviewProvider {
     static var previews: some View {
         ProductUpdateRecord(isUpdateRecord: .constant(false))
