@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct PopUpInfoView: View {
+    @Binding var isUpdateRecord: Bool
     @Binding var IsPopupInfo: Bool
     @State var popupInfoType: InfoType
     @State var popupInfoTitle: String
     @State var popupInfoDescription: String
-
+    
+    var loadParent = {}
 
     var body: some View {
         let bgColor = "myInfo"
@@ -22,18 +24,18 @@ struct PopUpInfoView: View {
                      
                         VStack {
                             // close buntton
-                            HStack {
-                                Spacer()
-                                Button(action: {
-                                    self.IsPopupInfo.toggle()
-                                }, label: {
-                                    Image(systemName: "xmark.circle")
-                                        .font(.system(size: 30))
-                                })
-                            }
-                            .padding(.horizontal, 10)
-                            .foregroundColor(.gray)
-                            .padding()
+//                            HStack {
+//                                Spacer()
+//                                Button(action: {
+//                                    self.IsPopupInfo.toggle()
+//                                }, label: {
+//                                    Image(systemName: "xmark.circle")
+//                                        .font(.system(size: 30))
+//                                })
+//                            }
+//                            .padding(.horizontal, 10)
+//                            .foregroundColor(.gray)
+//                            .padding()
                             VStack {
                                 Text(popupInfoTitle)
                                     .font(.title)
@@ -61,6 +63,13 @@ struct PopUpInfoView: View {
         .onTapGesture {
             self.IsPopupInfo.toggle()
         }
+        .onAppear() {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+//                self.loadParent()
+                self.IsPopupInfo.toggle()
+                
+            }
+        }
         // End of Zstack
         
          
@@ -70,7 +79,7 @@ struct PopUpInfoView: View {
 struct PopUpInfoView_Previews: PreviewProvider {
     static var previews: some View {
       
-        PopUpInfoView(IsPopupInfo: .constant(false), popupInfoType: .Information, popupInfoTitle: "", popupInfoDescription: "")
+        PopUpInfoView(isUpdateRecord: .constant(false), IsPopupInfo: .constant(false), popupInfoType: .Information, popupInfoTitle: "", popupInfoDescription: "")
         
     }
 }

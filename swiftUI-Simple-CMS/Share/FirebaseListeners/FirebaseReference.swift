@@ -9,6 +9,7 @@ import Foundation
 import FirebaseFirestore
 
 enum FCollectionReference: String {
+    case Category
     case Product
     /*
      case User

@@ -6,8 +6,15 @@
 //
 
 import SwiftUI
+import KingfisherSwiftUI
 
 struct ProductForm: View {
+    @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var productListener: ProductListener
+    
+    @Binding var productData: Product?
+    @Binding var isUpdateRecord: Bool
+    
     @State private var image: SwiftUI.Image?
     @State private var imageSeleted: UIImage?
     @State private var filterIntensity = 0.5
@@ -15,17 +22,20 @@ struct ProductForm: View {
     @State private var inputImage: UIImage?
     
     @State var name: String = ""
-    @State var description: String = ""
+
     @State var price: String = ""
     @State var isActive: Bool = true
     @State var uploadImage: String = kDEFAULEUPLOADIMAGE
     
     @State var IsPopupInfo: Bool = false
     @State var popupInfo: PopupInfo
-     
+    @State var imageURL: String = ""
+    
+    var loadParent = {}
     
     var body: some View {
-        ZStack {
+        
+        return ZStack {
             Color.init("myBackground")
             VStack {
                 // Start Form
@@ -39,13 +49,25 @@ struct ProductForm: View {
                                     .scaledToFit()
                                     .frame(width: screen.width * 0.9)
                             } else {
-                                Image(uploadImage)
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: screen.width * 0.5)
-                                    .onTapGesture {
-                                        self.showingImagePicker = true
-                                    }
+                                if imageURL != "" {
+                                    KFImage(URL(string: imageURL)!)
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: screen.width * 0.5)
+                                        .onTapGesture {
+                                            self.showingImagePicker = true
+                                        }
+                                    
+                                } else {
+                                    Image(uploadImage)
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: screen.width * 0.5)
+                                        .onTapGesture {
+                                            self.showingImagePicker = true
+                                        }
+                                }
+                                
                             }
                             
                              
@@ -89,6 +111,7 @@ struct ProductForm: View {
                         
                         Button(action: {
                             saveDataToFirebase()
+                            self.loadParent()
                         }, label: {
                             Text("Save")
                                 .foregroundColor(.white)
@@ -101,17 +124,39 @@ struct ProductForm: View {
                         .padding(.top, 45)
                         .disabled((name == "" || price == ""))
                         
-                        
                     }.padding()
                 } // End ScrollView
                 // End Form
             }
             
+            
             if IsPopupInfo {
-                PopUpInfoView(IsPopupInfo: $IsPopupInfo, popupInfoType: popupInfo.popupType, popupInfoTitle: popupInfo.title, popupInfoDescription: popupInfo.description)
-                    .animation(.easeInOut)
+
+                Text("Wait a minute")
+                .fullScreenCover(isPresented: .constant(true), content: {
+                    ProductIndexView() {
+                        isUpdateRecord = false
+                        //self.loadParent()
+                        self.presentationMode.wrappedValue.dismiss()
+                    }
+                })
+                 
+                
+            } 
+            
+        } 
+        .onAppear {
+            if (isUpdateRecord) {
+                if let productData = productData {
+                    name = productData.name ?? ""
+                    price = String(productData.price ?? 0.0)
+                    imageURL = productData.imageURL ?? ""
+                    isActive = productData.isActive ?? true
+                }
             }
-        }// End of ZStack
+        }
+        
+        // End of ZStack
     }
     
     // MARK: - Helper Functions
@@ -122,6 +167,7 @@ struct ProductForm: View {
     
     private func uploadImage(_ image: UIImage, completion: @escaping (_ imageURL: String?)-> Void) {
         //let fileDirectory = "Avatars/_" + FUser.currentId() + ".jpg"
+       
         let fileName = UUID().uuidString
         let fileDirectory = "Category/" + fileName + ".jpg"
         
@@ -134,32 +180,61 @@ struct ProductForm: View {
     
     
     func saveDataToFirebase(){
-        var imageURL: String = ""
-        uploadImage(self.inputImage!) { (uploadedImageURL) in
-            imageURL = uploadedImageURL ?? ""
+        if let inputImage = self.inputImage {
+            uploadImage(inputImage) { (uploadedImageURL) in
+                let imageURL = uploadedImageURL ?? ""
+                DispatchQueue.main.async {
+                    if (productData == nil) {
+                        doCreateRecord(imageURL: imageURL)
+                    } else {
+                        print(">> Respons URL : \(imageURL)")
+                        doUpdateRecord(imageURL: imageURL)
+                    }
+                }
+            }
+        } else {
+            if (productData == nil) {
+                doCreateRecord(imageURL: "")
+            } else {
+                doUpdateRecord(imageURL: productData?.imageURL ?? "")
+            }
         }
         
-        ProductCMS().createRecord(_name: self.name,
-                                  _price: Double(self.price) ?? 0.0,
-                                    _imageURL: imageURL,
-                                    _isActive: self.isActive) { (infoType, message)  in
-            // reset form and popup Info
+    }
+    
+    func doUpdateRecord(imageURL: String){
+     
+        ProductCMS().updateRecord(_objectId: productData?.id ?? "", _name: self.name, _price: Double(self.price) ?? 0.0, _imageURL: imageURL,  _isActive: self.isActive) { (infoType, message)  in 
+            self.IsPopupInfo = true
+            
+        }
+    }
+    
+    func doCreateRecord(imageURL: String){
+        ProductCMS().createRecord(_name: self.name, _price: Double(self.price) ?? 0.0, _imageURL: imageURL,  _isActive: self.isActive) { (infoType, message)  in
+                // reset form and popup Info
             self.IsPopupInfo = true
             self.name = ""
             self.price = ""
             self.image = nil
-            self.popupInfo.newValue(popupType: infoType ?? .Information,
-                                    title: "Save Category",
-                                    description: message!)
-            
+            self.inputImage = nil 
         }
     }
+    
+ 
 }
 
 
 //NOT ACTIVE JUST FOR DEBUGING
-struct ProductForm_Previews: PreviewProvider {
-    static var previews: some View {
-        ProductForm(popupInfo: PopupInfo())
-    }
-}
+//struct ProductForm_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ProductForm(productData: .constant(nil), popupInfo: PopupInfo())
+//    }
+//}
+
+
+/*
+ //PopUpInfoView(isUpdateRecord: $isUpdateRecord, IsPopupInfo: $IsPopupInfo, popupInfoType: popupInfo.popupType, popupInfoTitle: popupInfo.title, popupInfoDescription: popupInfo.description)
+ 
+ self.popupInfo.newValue(popupType: infoType ?? .Information, title: "Update Category", description: message!)
+ */

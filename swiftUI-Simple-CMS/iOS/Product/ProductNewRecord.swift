@@ -8,7 +8,12 @@
 import SwiftUI
 
 struct ProductNewRecord: View {
+    
     @Binding var isNewRecord: Bool
+    @Binding var productData: Product?
+    @Binding var isUpdateRecord: Bool
+    
+    var loadParent = {}
     
     var body: some View {
         ZStack {
@@ -24,6 +29,8 @@ struct ProductNewRecord: View {
                         Spacer()
                     
                     Button(action: {
+                        productData = nil
+                        self.loadParent()
                         self.isNewRecord.toggle()
                     }, label: {
                         Image(systemName: "list.dash")
@@ -38,7 +45,7 @@ struct ProductNewRecord: View {
                 
                 // Start Body
                 ScrollView(.vertical, showsIndicators: false) {
-                    ProductForm(popupInfo: PopupInfo())
+                    ProductForm(productData: $productData, isUpdateRecord: $isUpdateRecord, popupInfo: PopupInfo())
                 }
                 //End Body
             }
@@ -54,6 +61,6 @@ struct ProductNewRecord: View {
 //NOT ACTIVE JUST FOR DEBUGING
 struct ProductNewRecord_Previews: PreviewProvider {
     static var previews: some View {
-            ProductNewRecord(isNewRecord: .constant(false)) 
+        ProductNewRecord(isNewRecord: .constant(false), productData: .constant(nil), isUpdateRecord: .constant(false))
     }
 }

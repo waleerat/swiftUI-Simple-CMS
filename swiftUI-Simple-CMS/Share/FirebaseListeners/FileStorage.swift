@@ -111,6 +111,19 @@ class FileStorage {
         imageData.write(to: docURL, atomically: true)
     }
     
+    class func removeFileFromFirestore(fileURL:String){
+            let storage = Storage.storage()
+            let storageRef = storage.reference(forURL: fileURL)
+            storageRef.delete { error in
+                if let error = error {
+                    print(error)
+                } else {
+                    print(">> File deleted successfully!")
+                }
+            }
+        
+    }
+    
 }
 
 
@@ -127,6 +140,8 @@ func fileInDocumentsDirectory(filename: String) -> String {
     
     return fileURL.path
 }
+
+
 
 
 func fileExistsAt(path: String) -> Bool {

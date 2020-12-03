@@ -10,6 +10,9 @@ import SwiftUI
 struct ProductUpdateRecord: View {
     
     @Binding var isUpdateRecord: Bool
+    @Binding var productData: Product?
+    
+    var loadParent = {}
     
     var body: some View {
         
@@ -26,6 +29,7 @@ struct ProductUpdateRecord: View {
                         Spacer()
                     
                     Button(action: {
+                        self.loadParent()
                         self.isUpdateRecord.toggle()
                     }, label: {
                         Image(systemName: "list.dash")
@@ -40,13 +44,12 @@ struct ProductUpdateRecord: View {
                 
                 // Start Body
                 ScrollView(.vertical, showsIndicators: false) {
-                    
+                    ProductForm(productData: $productData, isUpdateRecord: $isUpdateRecord, popupInfo: PopupInfo())
                 }
                 //End Body
             }
             .padding(.top, screen.height * 0.035)
             .padding(.bottom, 30)
-            
             
         }.edgesIgnoringSafeArea(.all)
     }
@@ -55,6 +58,6 @@ struct ProductUpdateRecord: View {
 //NOT ACTIVE JUST FOR DEBUGING
 struct ProductUpdateRecord_Previews: PreviewProvider {
     static var previews: some View {
-        ProductUpdateRecord(isUpdateRecord: .constant(false))
+        ProductUpdateRecord(isUpdateRecord: .constant(false), productData: .constant(nil))
     }
 }

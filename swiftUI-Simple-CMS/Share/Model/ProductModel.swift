@@ -7,10 +7,9 @@
 
 import Foundation
 import Firebase
-import SwiftUI
+import FirebaseStorage
 
 struct Product: Identifiable, Hashable {
-    
     var id: String
     var name: String!
     var price: Double!
@@ -56,6 +55,15 @@ class ProductCMS {
         
     }
     
+    func emptyStrucValues(){
+        var product = Product(id: UUID().uuidString)
+        product.id = ""
+        product.name = ""
+        product.price = 0.0
+        product.imageURL = ""
+        product.isActive = true
+    }
+    
     
     
     func createRecord(_name: String, _price: Double, _imageURL: String, _isActive: Bool, completion: @escaping (_ error: InfoType?,_ message: String?) -> Void) {
@@ -74,25 +82,68 @@ class ProductCMS {
                 product.createdDate = Date()
                 
                 product.saveOrderToFirestore()
-                
-                completion(.Information, "Success")
+                self.emptyStrucValues()
+                completion(.Information, "Created")
                 
             } else {
                 completion(.Information, "Duplicate name")
             }
         }
-         
     }
     
     
-    func updateRecord(_objectId: String,_name: String, _price: Double, _imageURL: String, _isActive: Bool, completion: @escaping (_ error: Error?) -> Void) {
-         
- 
+    func updateRecord(_objectId: String,_name: String, _price: Double, _imageURL: String, _isActive: Bool, completion: @escaping (_ error: InfoType?,_ message: String?) -> Void) {
+        
+        var product = Product(id: UUID().uuidString)
+        product.id = _objectId
+        product.name = _name
+        product.price = _price
+        product.imageURL = _imageURL
+        product.isActive = _isActive
+        product.createdDate = Date()
+        
+        product.saveOrderToFirestore()
+        emptyStrucValues()
+        completion(.Information, "Updated")
         
     }
     
-    func removeRecord() {
+    func removeRecord(objectId: String) {
+        print("removeRecord \(objectId)")
+        FirebaseReference(.Product).whereField(kID, isEqualTo: objectId).addSnapshotListener { (snapshot, error) in
+            guard let snapshot = snapshot else { return }
+
+            if !snapshot.isEmpty {
+                let rowData = snapshot.documents
+                let imageURL = rowData.map { $0["imageURL"]! }
+                
+                // Delete Document
+                FirebaseReference(.Product).document(objectId).delete() { err in
+                    if let err = err {
+                        print("Error removing document: \(err)")
+                    } else {
+                        print(">> Document successfully removed!")
+                        
+                        //Removes image from storage
+                        if (imageURL[0] as! String != "") {
+                            FileStorage.removeFileFromFirestore(fileURL: imageURL[0] as! String)
+                        }
+                        
+                    }
+                }
+            }
+            
+            
+            
+           
+        }
+         
         
+       // fileExistsAt(path: String)
+        
+        
+
     }
 
 }
+

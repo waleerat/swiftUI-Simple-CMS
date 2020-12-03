@@ -11,22 +11,24 @@ import SwiftUI
 
 class ProductListener: ObservableObject {
     
-    @Published var categories: [Product] = []
+    @Published var products: [Product] = []
     
     init() {
-        downloadCategories()
+        downloadproducts()
     }
      
     
-    func downloadCategories() {
-        
-        FirebaseReference(.Product).getDocuments { (snapshot, error) in
+    func downloadproducts() {
+        print(">> Refresh rows ")
+        FirebaseReference(.Product)
+            .order(by: kCREATEDDATE, descending: true)
+            .getDocuments { (snapshot, error) in
             
             guard let snapshot = snapshot else { return }
             
             if !snapshot.isEmpty {
                 
-                self.categories = self.getRowsFromDictionary(snapshot)
+                self.products = self.getRowsFromDictionary(snapshot)
             }
         }
     }
@@ -39,7 +41,7 @@ class ProductListener: ObservableObject {
         for snapshot in snapshot.documents {
             
             let rowData = snapshot.data()
-            
+           
            allRows.append(Product(id: rowData[kID] as? String ?? UUID().uuidString,
                                     name: rowData[kPRONAME]! as? String ?? "",
                                     price: rowData[kPROPRICE]! as? Double ?? 0.0,
