@@ -19,13 +19,13 @@ struct HomeView: View {
                     CategoryIndexView()
                         .tabItem {
                             Image(systemName: "command")
-                            Text("Home")
+                            Text("Category")
                         }.tag(0)
                     
                     ProductIndexView()
                         .tabItem {
                             Image(systemName: "command")
-                            Text("Search")
+                            Text("Product")
                         }.tag(1)
                     
                     Text("View 3")
