@@ -29,6 +29,12 @@
 		AB426CFA2577CAD800B6625A /* ProductForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB426CF92577CAD800B6625A /* ProductForm.swift */; };
 		AB426CFD2577D75000B6625A /* FileStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB426CFC2577D75000B6625A /* FileStorage.swift */; };
 		AB426D012577F3F100B6625A /* ConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB426D002577F3F100B6625A /* ConfirmationView.swift */; };
+		AB4A8E462579832400D16CD3 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4A8E452579832400D16CD3 /* Category.swift */; };
+		AB4A8E492579857A00D16CD3 /* CategoryListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4A8E482579857A00D16CD3 /* CategoryListener.swift */; };
+		AB4A8E592579878500D16CD3 /* CategoryIndexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4A8E582579878500D16CD3 /* CategoryIndexView.swift */; };
+		AB4A8E5E2579893800D16CD3 /* CategoryNewRecode.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4A8E5D2579893800D16CD3 /* CategoryNewRecode.swift */; };
+		AB4A8E63257989D200D16CD3 /* CategoryUpdateRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4A8E62257989D200D16CD3 /* CategoryUpdateRecord.swift */; };
+		AB4A8E6725798A4800D16CD3 /* CategoryForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB4A8E6625798A4800D16CD3 /* CategoryForm.swift */; };
 		E86102D6FE75FEBE462A25B4 /* Pods_swiftUI_Simple_CMS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E538BA93B2ACEAAF871192C5 /* Pods_swiftUI_Simple_CMS.framework */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +62,12 @@
 		AB426CF92577CAD800B6625A /* ProductForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductForm.swift; sourceTree = "<group>"; };
 		AB426CFC2577D75000B6625A /* FileStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStorage.swift; sourceTree = "<group>"; };
 		AB426D002577F3F100B6625A /* ConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationView.swift; sourceTree = "<group>"; };
+		AB4A8E452579832400D16CD3 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		AB4A8E482579857A00D16CD3 /* CategoryListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryListener.swift; sourceTree = "<group>"; };
+		AB4A8E582579878500D16CD3 /* CategoryIndexView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryIndexView.swift; sourceTree = "<group>"; };
+		AB4A8E5D2579893800D16CD3 /* CategoryNewRecode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryNewRecode.swift; sourceTree = "<group>"; };
+		AB4A8E62257989D200D16CD3 /* CategoryUpdateRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryUpdateRecord.swift; sourceTree = "<group>"; };
+		AB4A8E6625798A4800D16CD3 /* CategoryForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryForm.swift; sourceTree = "<group>"; };
 		B45C42F7889BB085491C0C1A /* Pods-swiftUI-Simple-CMS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swiftUI-Simple-CMS.release.xcconfig"; path = "Target Support Files/Pods-swiftUI-Simple-CMS/Pods-swiftUI-Simple-CMS.release.xcconfig"; sourceTree = "<group>"; };
 		BD56E6BE604995C4D430E148 /* Pods-swiftUI-Simple-CMS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-swiftUI-Simple-CMS.debug.xcconfig"; path = "Target Support Files/Pods-swiftUI-Simple-CMS/Pods-swiftUI-Simple-CMS.debug.xcconfig"; sourceTree = "<group>"; };
 		E538BA93B2ACEAAF871192C5 /* Pods_swiftUI_Simple_CMS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_swiftUI_Simple_CMS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -140,6 +152,7 @@
 		AB426CCC2577B46600B6625A /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				AB4A8E562579874E00D16CD3 /* Category */,
 				AB426CD92577B6E200B6625A /* Product */,
 				AB426CE32577B74200B6625A /* HelperView */,
 			);
@@ -158,6 +171,7 @@
 			children = (
 				AB426CE82577B77700B6625A /* ModelListeners */,
 				AB426CE42577B76B00B6625A /* ProductModel.swift */,
+				AB4A8E452579832400D16CD3 /* Category.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -206,8 +220,20 @@
 			isa = PBXGroup;
 			children = (
 				AB426CE92577B79800B6625A /* ProductListener.swift */,
+				AB4A8E482579857A00D16CD3 /* CategoryListener.swift */,
 			);
 			path = ModelListeners;
+			sourceTree = "<group>";
+		};
+		AB4A8E562579874E00D16CD3 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				AB4A8E582579878500D16CD3 /* CategoryIndexView.swift */,
+				AB4A8E5D2579893800D16CD3 /* CategoryNewRecode.swift */,
+				AB4A8E62257989D200D16CD3 /* CategoryUpdateRecord.swift */,
+				AB4A8E6625798A4800D16CD3 /* CategoryForm.swift */,
+			);
+			path = Category;
 			sourceTree = "<group>";
 		};
 		D243010863D0A63AFC6DBEF2 /* Frameworks */ = {
@@ -342,8 +368,12 @@
 				AB426CD62577B66A00B6625A /* Constants.swift in Sources */,
 				AB426C992577AD5600B6625A /* AppDelegate.swift in Sources */,
 				AB426C9B2577AD5600B6625A /* SceneDelegate.swift in Sources */,
+				AB4A8E592579878500D16CD3 /* CategoryIndexView.swift in Sources */,
 				AB426CF72577CAA600B6625A /* ImagePicker.swift in Sources */,
+				AB4A8E6725798A4800D16CD3 /* CategoryForm.swift in Sources */,
 				AB426CD32577B5D300B6625A /* FirebaseReference.swift in Sources */,
+				AB4A8E492579857A00D16CD3 /* CategoryListener.swift in Sources */,
+				AB4A8E462579832400D16CD3 /* Category.swift in Sources */,
 				AB426CEE2577B7BD00B6625A /* SampleView.swift in Sources */,
 				AB426CFA2577CAD800B6625A /* ProductForm.swift in Sources */,
 				AB426CFD2577D75000B6625A /* FileStorage.swift in Sources */,
@@ -354,6 +384,8 @@
 				AB426D012577F3F100B6625A /* ConfirmationView.swift in Sources */,
 				AB426CF42577C93F00B6625A /* Extension.swift in Sources */,
 				AB426CF12577B7FB00B6625A /* PopupInfoView.swift in Sources */,
+				AB4A8E5E2579893800D16CD3 /* CategoryNewRecode.swift in Sources */,
+				AB4A8E63257989D200D16CD3 /* CategoryUpdateRecord.swift in Sources */,
 				AB426CE12577B73A00B6625A /* ProductUpdateRecord.swift in Sources */,
 				AB426CEA2577B79800B6625A /* ProductListener.swift in Sources */,
 			);

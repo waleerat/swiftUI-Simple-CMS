@@ -7,7 +7,6 @@
 
 import Foundation
 import Firebase
-import FirebaseStorage
 
 struct Product: Identifiable, Hashable {
     var id: String

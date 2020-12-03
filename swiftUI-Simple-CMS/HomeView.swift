@@ -7,15 +7,50 @@
 
 import SwiftUI
 
+import SwiftUI
+
 struct HomeView: View {
+    let screen = UIScreen.main.bounds
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+            VStack {
+                TabView {
+                   
+                    CategoryIndexView()
+                        .tabItem {
+                            Image(systemName: "command")
+                            Text("Home")
+                        }.tag(0)
+                    
+                    ProductIndexView()
+                        .tabItem {
+                            Image(systemName: "command")
+                            Text("Search")
+                        }.tag(1)
+                    
+                    Text("View 3")
+                        .tabItem {
+                            Image(systemName: "command")
+                            Text("Coming Soon")
+                        }.tag(2)
+                    
+                    Text("View 4")
+                        .tabItem {
+                            Image(systemName: "command")
+                            Text("Downloads")
+                        }.tag(3)
+                }
+                .accentColor(Color.blue)
+            }
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        ZStack {
+            Color.init("myBackground")
+                .edgesIgnoringSafeArea(.all)
+            HomeView() 
+        }
     }
 }

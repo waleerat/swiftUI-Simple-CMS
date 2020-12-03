@@ -19,6 +19,9 @@ public let kID = "id"
 public let kCREATEDDATE = "createDate"
 
 //Category
+public let kCATENAME = "name"
+
+//Product
 public let kPRONAME = "name"
 public let kPROPRICE = "description"
 public let kPROIMAGEURL = "imageURL"

@@ -134,11 +134,14 @@ struct ProductForm: View {
 
                 Text("Wait a minute")
                 .fullScreenCover(isPresented: .constant(true), content: {
-                    ProductIndexView() {
-                        isUpdateRecord = false
-                        //self.loadParent()
-                        self.presentationMode.wrappedValue.dismiss()
-                    }
+                    // for navigation
+//                    ProductIndexView() {
+//                        isUpdateRecord = false
+//                        //self.loadParent()
+//                        self.presentationMode.wrappedValue.dismiss()
+//                    }
+                    // For Buttom bar menu
+                    HomeView().tag(1)
                 })
                  
                 
